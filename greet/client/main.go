@@ -16,5 +16,5 @@ func main() {
 	defer conn.Close()
 
 	c := proto.NewGreetServiceClient(conn)
-	doGreet(c)
+	doGreetManyTimes(c)
 }
