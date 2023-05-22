@@ -17,5 +17,6 @@ func main() {
 
 	c := proto.NewGreetServiceClient(conn)
 	//doGreetManyTimes(c)
-	doLongGreet(c)
+	//doLongGreet(c)
+	doGreetEveryone(c)
 }
