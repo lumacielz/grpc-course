@@ -16,5 +16,6 @@ func main() {
 	defer conn.Close()
 
 	c := proto.NewCalculatorServiceClient(conn)
-	decomposeIntoPrimes(c)
+	//decomposeIntoPrimes(c)
+	doAverage(c)
 }
