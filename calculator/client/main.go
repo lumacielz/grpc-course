@@ -17,5 +17,5 @@ func main() {
 
 	c := proto.NewCalculatorServiceClient(conn)
 	//decomposeIntoPrimes(c)
-	doAverage(c)
+	doMax(c)
 }
