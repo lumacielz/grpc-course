@@ -4,11 +4,10 @@ import (
 	"github.com/lumacielz/grpc-course/calculator/proto"
 	"io"
 	"log"
-	"math"
 )
 
 func (s *Server) Max(stream proto.CalculatorService_MaxServer) error {
-	var currentMax float64
+	var currentMax int64
 	for {
 		res, err := stream.Recv()
 		if err == io.EOF {
@@ -19,9 +18,12 @@ func (s *Server) Max(stream proto.CalculatorService_MaxServer) error {
 			log.Fatalf("Error receiving from client: %v\n", err)
 		}
 
-		currentMax = math.Max(float64(currentMax), float64(res.Num))
+		if res.GetNum() > currentMax {
+			currentMax = res.GetNum()
+		}
+
 		err = stream.Send(&proto.MaxResponse{
-			Max: int64(currentMax),
+			Max: currentMax,
 		})
 		if err != nil {
 			log.Fatalf("Error while sending data to client: %v\n", err)
