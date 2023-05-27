@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/lumacielz/grpc-course/calculator/proto"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/reflection"
 	"log"
 	"net"
 )
@@ -23,6 +24,7 @@ func main() {
 
 	s := grpc.NewServer()
 	proto.RegisterCalculatorServiceServer(s, &Server{})
+	reflection.Register(s)
 
 	if err = s.Serve(lis); err != nil {
 		log.Fatalf("Failed to serve: %v", err)
